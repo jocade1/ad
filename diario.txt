@@ -7,4 +7,13 @@
   Clonar en mi home
     -https://github.com/jocade1/ad.git
 
+  Configuracion local de git:
+    -git config --global user.name jocade1
+    -git config --global user.email josealberto1407@gmail.com
+    -git config --global push.default simple
+
+ Nuevo archivo:
+    -git add diario.txt
+    -git commit	
+
 
