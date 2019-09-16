@@ -1,0 +1,10 @@
+2019/09/16  josdel	
+
+  Crear usuario en gitHub
+    -Usuario : jocade1
+    -Correo : josealberto1407@gmail.com	
+
+  Clonar en mi home
+    -https://github.com/jocade1/ad.git
+
+
