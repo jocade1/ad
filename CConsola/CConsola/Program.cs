@@ -3,9 +3,11 @@
 namespace CConsola
 {
 
-    class MainClass{
+    class MainClass
+    {
 
-        public static void Main(string[] args) {
+        public static void Main(string[] args)
+        {
             //int entero =readInteger("Introduce un numero: ");
             //Console.WriteLine("entero={0}", entero);
             //int option = readOption("Elige opcion [012]: ", "012");
@@ -21,10 +23,11 @@ namespace CConsola
 
 
 
-        private static void nuevo() {
+        private static void nuevo()
+        {
             Console.WriteLine("Ha entrado en nuevo");
             Console.ReadLine();
-        
+
         }
 
 
@@ -45,48 +48,36 @@ namespace CConsola
         }
 
 
-        private static void salir()
+
+        public static int readInteger(string label)
         {
-            Console.WriteLine("Ha entrado en salir");
-            Console.ReadLine();
+            while (true)
+            {
+                Console.Write(label);
+                string linea = Console.ReadLine();
+                try
+                {
+                    return Int32.Parse(linea);
+                }
+                catch
+                {
+                    Console.WriteLine("Formato inválido. Vuelve a introducir.");
+                }
+            };
 
         }
-        //public static int readInteger(string label)
-        //{
-        //    while (true)
-        //    {
-        //        Console.Write(label);
-        //        string linea = Console.ReadLine();
-        //        try
-        //        {
-        //            return Int32.Parse(linea);
-        //        }
-        //        catch
-        //        {
-        //            Console.WriteLine("Formato invalido. Vuelve a introducir");
-        //        }
 
+        public static int readOption(string label, string options)
+        {
+            while (true)
+            {
+                Console.Write(label);
+                string option = Console.ReadLine();
+                if (option == "0")
+                    return 0;
+            }
 
-
-
-        //    };
-
-
-
-
-        //}
-
-        //public static int readOption(string label, string options)
-        //{
-        //    while(true)
-        //    {
-        //        Console.Write(label);
-        //        string linea = Console.ReadLine();
-        //        if (options.Contains(option))
-        //    }
-
-
-
-        //}
+            //}
+        }
     }
 }

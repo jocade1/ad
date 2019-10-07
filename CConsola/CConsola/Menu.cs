@@ -7,6 +7,7 @@ namespace CConsola
 
     {
         private bool exit = false;
+        private string menuLabel;
         private IList<string> labels = new List<string>();
         private IDictionary<string, Action> actions = new Dictionary<string, Action>();
 
