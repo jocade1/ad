@@ -1,37 +1,47 @@
-﻿using System;
-using Gtk;
+﻿using Gtk;
+using System;
+using System.Collections.Generic;
 
 using CGtk;
 
+using Serpis.Ad;
+
 public partial class MainWindow : Gtk.Window
 {
-    public MainWindow() : base(Gtk.WindowType.Toplevel)
-    {
+    public MainWindow() : base(Gtk.WindowType.Toplevel) {
         Build();
 
-        treeView.AppendColumn("id", new CellRendererText(), "text", 0);   // permite añadir columnas al treeView
-        treeView.AppendColumn("nombre", new CellRendererText(), "text", 1);
 
+        IList<Categoria> categorias = new List<Categoria>();
+        categorias.Add(new Categoria(1, "cat 1"));
+        categorias.Add(new Categoria(2, "cat 2"));
+        categorias.Add(new Categoria(3, "cat 3"));
 
-        ListStore listStore = new ListStore(typeof(string), typeof(string)); //crea un modelo para que se muestren las cabeceras del treeView 
+        TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, categorias);
 
-        treeView.Model = listStore;
+        newAction.Activated += (sender, e) => new CategoriaWindow();
+        editAction.Activated += (sender, e) => {
+            object value = TreeViewHelper.GetValue(treeView, "Nombre");
+            Console.WriteLine("editAction Activated Nombre = " + value);
+        };
 
-        listStore.AppendValues("1", "cat 1");//Añade los valores por fila
-        listStore.AppendValues("2", "cat 2");
+        refreshAction.Activated += (sender, e) =>
+            TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, categorias);
 
-
-        newAction.Activated += (sender, e) => new CategoriaWindow(); //Lanza la nueva ventana
-
-        editAction.Activated +=(sender, e) => ;
-    
-
+        refreshStateActions();
+        treeView.Selection.Changed += (sender, e) => refreshStateActions();
     }
 
 
-    protected void OnDeleteEvent(object sender, DeleteEventArgs a)
-    {
+
+    protected void OnDeleteEvent(object sender, DeleteEventArgs a) {
         Application.Quit();
         a.RetVal = true;
+    }
+
+    private void refreshStateActions() {
+        bool hasSelectedRows = treeView.Selection.CountSelectedRows() > 0;
+        editAction.Sensitive = hasSelectedRows;
+        deleteAction.Sensitive = hasSelectedRows;
     }
 }

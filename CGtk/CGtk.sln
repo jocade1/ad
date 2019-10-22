@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGtk", "CGtk\CGtk.csproj", "{FBE95D84-BDE9-4DAA-83A4-63D4FC4E7624}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGtk", "CGtk\CGtk.csproj", "{9321A02D-DBA4-4FA5-BE08-FD17FC82BF09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,9 +9,9 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FBE95D84-BDE9-4DAA-83A4-63D4FC4E7624}.Debug|x86.ActiveCfg = Debug|x86
-		{FBE95D84-BDE9-4DAA-83A4-63D4FC4E7624}.Debug|x86.Build.0 = Debug|x86
-		{FBE95D84-BDE9-4DAA-83A4-63D4FC4E7624}.Release|x86.ActiveCfg = Release|x86
-		{FBE95D84-BDE9-4DAA-83A4-63D4FC4E7624}.Release|x86.Build.0 = Release|x86
+		{9321A02D-DBA4-4FA5-BE08-FD17FC82BF09}.Debug|x86.ActiveCfg = Debug|x86
+		{9321A02D-DBA4-4FA5-BE08-FD17FC82BF09}.Debug|x86.Build.0 = Debug|x86
+		{9321A02D-DBA4-4FA5-BE08-FD17FC82BF09}.Release|x86.ActiveCfg = Release|x86
+		{9321A02D-DBA4-4FA5-BE08-FD17FC82BF09}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal

@@ -8,15 +8,15 @@ namespace CGtk
 
 		private global::Gtk.Table table1;
 
-		private global::Gtk.Entry entry2;
+		private global::Gtk.Entry entry1;
 
 		private global::Gtk.Label label1;
 
-		private global::Gtk.HButtonBox hbuttonbox1;
+		private global::Gtk.HButtonBox hbuttonbox3;
 
-		private global::Gtk.Button button1;
+		private global::Gtk.Button button6;
 
-		private global::Gtk.Button button2;
+		private global::Gtk.Button button7;
 
 		protected virtual void Build()
 		{
@@ -35,13 +35,13 @@ namespace CGtk
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
 			// Container child table1.Gtk.Table+TableChild
-			this.entry2 = new global::Gtk.Entry();
-			this.entry2.CanFocus = true;
-			this.entry2.Name = "entry2";
-			this.entry2.IsEditable = true;
-			this.entry2.InvisibleChar = '•';
-			this.table1.Add(this.entry2);
-			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1[this.entry2]));
+			this.entry1 = new global::Gtk.Entry();
+			this.entry1.CanFocus = true;
+			this.entry1.Name = "entry1";
+			this.entry1.IsEditable = true;
+			this.entry1.InvisibleChar = '•';
+			this.table1.Add(this.entry1);
+			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1[this.entry1]));
 			w1.LeftAttach = ((uint)(1));
 			w1.RightAttach = ((uint)(2));
 			w1.YOptions = ((global::Gtk.AttachOptions)(4));
@@ -59,32 +59,34 @@ namespace CGtk
 			w3.Expand = false;
 			w3.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.hbuttonbox1 = new global::Gtk.HButtonBox();
-			this.hbuttonbox1.Name = "hbuttonbox1";
-			this.hbuttonbox1.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
-			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-			this.button1 = new global::Gtk.Button();
-			this.button1.CanFocus = true;
-			this.button1.Name = "button1";
-			this.button1.UseUnderline = true;
-			this.button1.Label = global::Mono.Unix.Catalog.GetString("Cancelar");
-			this.hbuttonbox1.Add(this.button1);
-			global::Gtk.ButtonBox.ButtonBoxChild w4 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.button1]));
+			this.hbuttonbox3 = new global::Gtk.HButtonBox();
+			this.hbuttonbox3.Name = "hbuttonbox3";
+			this.hbuttonbox3.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			// Container child hbuttonbox3.Gtk.ButtonBox+ButtonBoxChild
+			this.button6 = new global::Gtk.Button();
+			this.button6.CanFocus = true;
+			this.button6.Name = "button6";
+			this.button6.UseStock = true;
+			this.button6.UseUnderline = true;
+			this.button6.Label = "gtk-cancel";
+			this.hbuttonbox3.Add(this.button6);
+			global::Gtk.ButtonBox.ButtonBoxChild w4 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox3[this.button6]));
 			w4.Expand = false;
 			w4.Fill = false;
-			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-			this.button2 = new global::Gtk.Button();
-			this.button2.CanFocus = true;
-			this.button2.Name = "button2";
-			this.button2.UseUnderline = true;
-			this.button2.Label = global::Mono.Unix.Catalog.GetString("Aceptar");
-			this.hbuttonbox1.Add(this.button2);
-			global::Gtk.ButtonBox.ButtonBoxChild w5 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.button2]));
+			// Container child hbuttonbox3.Gtk.ButtonBox+ButtonBoxChild
+			this.button7 = new global::Gtk.Button();
+			this.button7.CanFocus = true;
+			this.button7.Name = "button7";
+			this.button7.UseStock = true;
+			this.button7.UseUnderline = true;
+			this.button7.Label = "gtk-ok";
+			this.hbuttonbox3.Add(this.button7);
+			global::Gtk.ButtonBox.ButtonBoxChild w5 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox3[this.button7]));
 			w5.Position = 1;
 			w5.Expand = false;
 			w5.Fill = false;
-			this.vbox2.Add(this.hbuttonbox1);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbuttonbox1]));
+			this.vbox2.Add(this.hbuttonbox3);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbuttonbox3]));
 			w6.Position = 1;
 			w6.Expand = false;
 			w6.Fill = false;
@@ -94,7 +96,7 @@ namespace CGtk
 				this.Child.ShowAll();
 			}
 			this.DefaultWidth = 400;
-			this.DefaultHeight = 300;
+			this.DefaultHeight = 79;
 			this.Show();
 		}
 	}
