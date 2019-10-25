@@ -15,13 +15,14 @@ namespace Serpis.Ad
             treeView.Model = listStore;
         }
 
-        private static void init(TreeView treeView, string[] propertyNames ) {
+        private static void init(TreeView treeView, string[] propertyNames) {
             CellRendererText cellRendererText = new CellRendererText();
             foreach (string propertyName in propertyNames)
                 treeView.AppendColumn(propertyName, cellRendererText,
                   new TreeCellDataFunc((tree_column, cell, tree_model, iter) =>
                   {
-
+                      //Categoria categoria = (Categoria)listStore.GetValue(iter, 0);
+                      //object value = categoria.Id;
                       object obj = tree_model.GetValue(iter, 0);
                       object value = obj.GetType().GetProperty(propertyName).GetValue(obj);
 
@@ -34,21 +35,11 @@ namespace Serpis.Ad
             return GetValue(treeView, "Id");
         }
 
-        public static object GetValue(TreeView treeView, string propertyName = "Id") {
+        public static object GetValue(TreeView treeView, string propertyName) {
             if (!treeView.Selection.GetSelected(out TreeIter treeIter)) //Ninguna fila seleccionada
                 return null;
             object obj = treeView.Model.GetValue(treeIter, 0);
             return obj.GetType().GetProperty(propertyName).GetValue(obj);
-
-
-        }
-
-
-        public static void RemoveColumns(TreeView treeView){
-
-            TreeViewColumn[] treeViewColumns = treeView.Columns;
-            foreach(TreeViewColumn treeViewColumn in treeView.Columns)
-                treeView.RemoveColumn(treeViewColumn);
         }
     }
 }

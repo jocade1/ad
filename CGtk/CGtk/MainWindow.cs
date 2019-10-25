@@ -1,6 +1,10 @@
 ﻿using Gtk;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Reflection;
+
+using MySql.Data.MySqlClient;
 
 using CGtk;
 
@@ -11,22 +15,27 @@ public partial class MainWindow : Gtk.Window
     public MainWindow() : base(Gtk.WindowType.Toplevel) {
         Build();
 
+        App.Instance.DbConnection = new MySqlConnection(
+            "server=localhost;database=dbprueba;user=root;password=sistemas;ssl-mode=none"
+        );
+        App.Instance.DbConnection.Open();
 
-        IList<Categoria> categorias = new List<Categoria>();
-        categorias.Add(new Categoria(1, "cat 1"));
-        categorias.Add(new Categoria(2, "cat 2"));
-        categorias.Add(new Categoria(3, "cat 3"));
 
-        TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, categorias);
+        TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, CategoriaDao.GetAll());
 
-        newAction.Activated += (sender, e) => new CategoriaWindow();
+        newAction.Activated += (sender, e) => {
+            Categoria categoria = new Categoria();
+            new CategoriaWindow(categoria);
+        };
+
         editAction.Activated += (sender, e) => {
-            object value = TreeViewHelper.GetValue(treeView, "Nombre");
-            Console.WriteLine("editAction Activated Nombre = " + value);
+            object id = TreeViewHelper.GetId(treeView);
+            Categoria categoria = CategoriaDao.Load(id);
+            new CategoriaWindow(categoria);
         };
 
         refreshAction.Activated += (sender, e) =>
-            TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, categorias);
+            TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, CategoriaDao.GetAll());
 
         refreshStateActions();
         treeView.Selection.Changed += (sender, e) => refreshStateActions();
