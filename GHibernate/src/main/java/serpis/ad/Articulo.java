@@ -19,7 +19,7 @@ public class Articulo {
 	@ManyToOne
 	@JoinColumn(name="categoria")
 	private Categoria categoria;
-	private BigDecimal precio;
+	private double precio;
 	
 	public Long getId() {
 		return id;
@@ -39,10 +39,10 @@ public class Articulo {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public BigDecimal getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
-	public void setPrecio(BigDecimal precio) {
+	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
 }
