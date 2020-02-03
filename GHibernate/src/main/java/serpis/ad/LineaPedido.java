@@ -21,11 +21,21 @@ public class LineaPedido {
 	private Pedido pedido;
 	@ManyToOne
 	@JoinColumn (name = "articulo")
-	
 	private Articulo articulo;
+	
+	
 	private double precio = 0.0;
 	private float unidades = 0.0f;
 	private float importe = 0.0f;
+	
+	
+
+	public LineaPedido() {} //Hibernate necesita un ctor sin parámetros
+	
+	public LineaPedido(Pedido pedido) {
+		this.pedido = pedido;
+		pedido.getLineaPedidos().add(this);
+}
 	
 
 	
@@ -60,6 +70,15 @@ public class LineaPedido {
 		this.unidades = unidades;
 		
 	}
+	
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
 	
 	
 	@PrePersist

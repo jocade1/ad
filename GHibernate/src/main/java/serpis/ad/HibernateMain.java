@@ -8,91 +8,147 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import serpis.ad.ClasesDao.CategoriaDao;
+import serpis.ad.ClasesDao.ClienteDao;
+
+
+
+
 public class HibernateMain {
+	public static EntityManagerFactory entityManagerFactory;
+	public static EntityManager entityManager; 
 
 	public static void main(String[] args) {
 		
-		System.out.println("Base de datos");
-		System.out.println("Funciones: ");
-		System.out.println("1.Añadir");
-		System.out.println("2.Modificar");
-		System.out.println("3.Eliminar");
-		System.out.println("4.Ver lista articulos");
+		Scanner sc=new Scanner(System.in);
+		System.out.println("======Menu=====");
+		System.out.println("1.Categoria");
+		System.out.println("2.Producto");
+		System.out.println("3.Cliente");
+		System.out.println("4.Pedido");
+		System.out.println("5.Linea");
+		System.out.println("0.Salida");
+
 		
-		Scanner sc = new Scanner(System.in);
-		int operacion = sc.nextInt();
 		
-		switch (operacion) {
-		
-		case 1:
+		try {
+			int num = sc.nextInt();
 			
-			System.out.println("Vas a añadir un pedido");
-			nuevoPedido();
-			break;
-		
-		case 2:
+			switch(num) {
 			
-			System.out.println("Vas a modificar un pedido");
-			modificarPedido();
-			break;
+			case 1:
+				System.out.println("Categoria");
+				System.out.println("1.Insertar");
+				System.out.println("2.Modificar");
+				System.out.println("3.Borrar");
+				System.out.println("4.Mostrar");
+				System.out.println("0.Salir");
+				int seleccion=sc.nextInt();
+				
+				switch(seleccion) {
+				case 1 :
+					CategoriaDao.insert();
+					break;
+				
+				case 2: 
+				
+					break;
+					
+				
+				case 3: 
+						
+					break;
+					
+				case 4:
+					CategoriaDao.show();
+					break;
+					
+				case 0:	
+					System.exit(0);
+					break;
+				}
+				
+			case 2:
+				System.out.println("Producto");
+				System.out.println("1.Insertar");
+				System.out.println("2.Modificar");
+				System.out.println("3.Borrar");
+				System.out.println("4.Mostrar");
+				System.out.println("0.Salir");
+				int seleccion1=sc.nextInt();
+				
+				switch(seleccion1) {
+				case 1 :
+					CategoriaDao.insert();
+					break;
+				
+				case 2: 
+				
+					break;
+					
+				
+				case 3: 
+						
+					break;
+					
+				case 4:
+					CategoriaDao.show();
+					break;
+					
+				case 0:	
+					System.exit(0);
+					break;
+				}
+				
 			
-		case 3:
+
 			
-			System.out.println("Vas a borrar un pedido");
-			eliminarPedido();
-			break;
-			
-		
-		
-		}
-		
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("serpis.ad");
-		
-		Categoria categoria = new Categoria();
-		categoria.setNombre("cat " + LocalDateTime.now());
-		
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		entityManager.getTransaction().begin();
-		entityManager.persist(categoria);
-		
-		List<Categoria> categorias = entityManager.createQuery("from Categoria order by Id", Categoria.class).getResultList();
-		show(categorias);
-		entityManager.getTransaction().commit();
-		entityManager.close();
-		
-		
-		entityManagerFactory.close();
-		
+			}
 		
 
-	}
+			
+			}catch(Exception e) {
+				System.out.println("Nothing to do");
+			}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
-	private static void show(List<Categoria> categorias) {
-		for (Categoria categoria : categorias)
-			System.out.printf("%3d %s %n", categoria.getId(), categoria.getNombre());		
-	}
+
 	
 	
 	
 	public static void nuevoPedido() {
 		Scanner sc = new Scanner(System.in);
-		Categoria categoria = new Categoria();
-		
-		
+		Categoria categoria=new Categoria();
+		System.out.println("Dime el nombre de la categoria:");
+		String nombre=sc.nextLine();
+		categoria.setNombre(nombre);
+		entityManagerFactory=Persistence.createEntityManagerFactory("serpis.ad");
+		entityManager=entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		entityManager.persist(categoria);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		entityManagerFactory.close();
 	
 	}
 	
 	
 	
 	
-	public static void modificarPedido() {
-		
-	}
 
-	
-	public static void eliminarPedido() {
-		
-		
-	}
-	
 }

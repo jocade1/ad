@@ -27,7 +27,7 @@ public class Pedido {
 	
 	private List<LineaPedido> lineasPedido;
 		
-	private Pedido() {
+	public Pedido() {
 		
 	}
 	
@@ -39,14 +39,51 @@ public class Pedido {
 		return id;
 	}
 	
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 	public LocalDateTime getFecha() {
 		return fecha;
 	}
+	
+	public void setFecha(LocalDateTime fecha) {
+		this.fecha = fecha;
+		
+	}
+	
 	
 	public float getImporte() {
 		return importe;
 	}
 	
+	public void setImporte(float importe) {
+		this.importe = importe;
+		
+	}
+	 
+	
+	public List<LineaPedido> getLineaPedidos() {
+		return lineasPedido;
+	}
+
+
+	public void setLinea_pedido(List<LineaPedido> lineasPedido) {
+		this.lineasPedido = lineasPedido;
+}
+	
+
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+}
 	
 	
 	
