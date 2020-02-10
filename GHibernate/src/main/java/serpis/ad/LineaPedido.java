@@ -1,5 +1,6 @@
 package serpis.ad;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,11 +11,14 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.sound.sampled.Line;
 
-@Entity
+@Entity(name="pedidolinea")
+
 public class LineaPedido {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@ManyToOne
 	@JoinColumn (name = "pedido")
 	
@@ -23,10 +27,16 @@ public class LineaPedido {
 	@JoinColumn (name = "articulo")
 	private Articulo articulo;
 	
+	@Column
+	private float precio = 0.0f;
 	
-	private double precio = 0.0;
+	@Column
 	private float unidades = 0.0f;
-	private float importe = 0.0f;
+	
+	@Column
+	private float importe ;
+	
+	
 	
 	
 
@@ -50,15 +60,18 @@ public class LineaPedido {
 	}
 	
 	public void setArticulo(Articulo articulo) {
-		this.precio = articulo.getPrecio();
-		this.unidades = 1.0f;
 		this.articulo = articulo;
 	}
 	
-	public double getPrecio(){
+	public float getPrecio(){
 		return precio;
 		
 	}
+	
+	public float getUnidades() {
+		return unidades;
+	}
+
 	
 	public void setPrecio(float precio) {
 		this.precio = precio;
@@ -71,24 +84,29 @@ public class LineaPedido {
 		
 	}
 	
-	public Producto getProducto() {
-		return producto;
+	public void setPedido(Pedido pedido) {
+		this.pedido=pedido;
 	}
 
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
 
 	
 	
 	@PrePersist
 	@PreUpdate
-	private void setImporte() {
-		importe = (float)precio * unidades;
+	public void setImporte() {
+		System.out.println("calculando importe :" + unidades * precio);
+		this.importe = unidades*precio;
 	}
 	
 	public float getImporte() {
-		getImporte();
+		if(this.importe == 0f)
+			this.setImporte();
 		return importe;
 	}
+	
+	public Articulo getArticulo() {
+		return articulo;
+	}
+
+
 }

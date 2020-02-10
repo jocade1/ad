@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 @Entity
 public class Pedido {
@@ -23,9 +25,11 @@ public class Pedido {
 	@ManyToOne
 	@JoinColumn(name="cliente")
 	private Cliente cliente;
+	
 	@OneToMany (mappedBy ="pedido",cascade = CascadeType.ALL,orphanRemoval = true)
 	
-	private List<LineaPedido> lineasPedido;
+	
+	private List<LineaPedido> lineasPedido = new ArrayList<LineaPedido>();
 		
 	public Pedido() {
 		
@@ -55,9 +59,7 @@ public class Pedido {
 	}
 	
 	
-	public float getImporte() {
-		return importe;
-	}
+	
 	
 	public void setImporte(float importe) {
 		this.importe = importe;
@@ -74,7 +76,20 @@ public class Pedido {
 		this.lineasPedido = lineasPedido;
 }
 	
-
+	@PrePersist
+	@PreUpdate
+	public void setImporte() {
+		System.out.println("Lineas: " + getLineaPedidos() + " NumLineas: " + getLineaPedidos().size());
+		for(LineaPedido lp: getLineaPedidos()) {
+			System.out.println("Linea pedido:" + lp + " Importe: " + lp.getImporte());
+			this.importe +=lp.getImporte();
+		}
+		
+	}
+	public float getImporte() {
+		return importe;
+	}
+	
 
 	public Cliente getCliente() {
 		return cliente;

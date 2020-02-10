@@ -22,7 +22,7 @@ public class ClienteDao {
 		entityManager.getTransaction().begin();
 		entityManager.persist(cliente);
 		entityManager.getTransaction().commit();
-	
+		entityManager.close();
 		}
 	
 	
@@ -31,31 +31,34 @@ public class ClienteDao {
 		
 		System.out.println("Indique el id a cambiar");
 		Long idCliente = sc.nextLong();
-		entityManager = entityManagerFactory.createEntityManager();
-		entityManager.createQuery("from clientes where id_clientes = idClientes");
+		cliente=entityManager.find(Cliente.class,idCliente);
+		Scanner sc2 = new Scanner(System.in);
+		System.out.println("Nombre:");
+		entityManager.getTransaction().begin();
+		cliente.setNombre(sc2.nextLine());
+		entityManager.getTransaction().commit();
+		entityManager.close();
 		
-		System.out.println("Seleccion opcion a cambiar");
-		System.out.println("1.Nombre");
-		System.out.println("2.Id");
+	
 		
-		int cambio = sc.nextInt();
-		
-		switch(cambio) {
-		
-		case 1 :
-			
-			break;
-			
-			
-		case 2:
-			
-			break;
-			
-			
+
 			
 		}
+	
+	
+	
+	public static void delete() {
 		
+		System.out.println("Introduce el id del cliente a eliminar");
+		Long id=sc.nextLong();
+		cliente=entityManager.find(Cliente.class, id);
+    	entityManager.getTransaction().begin();
+    	entityManager.remove(cliente);
+    	entityManager.getTransaction().commit();
+    	entityManager.close();
 	}
+		
+	
 		
 		
 		public static void show() {

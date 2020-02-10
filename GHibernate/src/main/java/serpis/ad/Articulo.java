@@ -3,6 +3,7 @@ package serpis.ad;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,11 +16,17 @@ public class Articulo {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column
 	private String nombre;
+	
 	@ManyToOne
 	@JoinColumn(name="categoria")
+	
 	private Categoria categoria;
-	private double precio;
+	
+	@Column
+	private float precio;
 	
 	public Long getId() {
 		return id;
@@ -39,7 +46,7 @@ public class Articulo {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public double getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
 	public void setPrecio(float precio) {

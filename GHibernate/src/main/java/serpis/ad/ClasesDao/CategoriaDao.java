@@ -14,11 +14,12 @@ public class CategoriaDao {
 	public static EntityManagerFactory entityManagerFactory;
 	public static EntityManager entityManager;
 	public static  Scanner sc = new Scanner(System.in);
+	public static Categoria categoria;
 	
 	
 	public static void insert() {
 		
-		Categoria categoria = new Categoria();
+		categoria = new Categoria();
 		System.out.println("Indique el nombre de la categoria");
 		String nombre = sc.nextLine();
 		categoria.setNombre(nombre);
@@ -34,23 +35,37 @@ public class CategoriaDao {
 	
 	
 	public static void update() {
-		entityManagerFactory=Persistence.createEntityManagerFactory("serpis.ad");
+		System.out.println("Indique categoria a cambiar");
+		Long id = sc.nextLong();
+		categoria=entityManager.find(Categoria.class,id);
+		System.out.println("Nuevo nombre");
+		entityManager.getTransaction().begin();
+		categoria.setNombre(sc.nextLine());
+		entityManager.getTransaction().commit();
+		entityManager.close();
 		
 	}
 	
 	
-	public static void delete() {
-		
-	}
+
 	
 	
 	public static void show() {
-		entityManagerFactory=Persistence.createEntityManagerFactory("serpis.ad");
-		entityManager=entityManagerFactory.createEntityManager();
-		List<Categoria>categorias= entityManager.createQuery("from categoria order by id", Categoria.class).getResultList();
+		
+		List<Categoria>categorias = entityManager.createQuery("from categoria order by id",Categoria.class).getResultList();
 		for (Categoria categoria : categorias)
-			System.out.printf("%d %s %n", categoria.getId(), categoria.getNombre());	
-	    entityManager.close();
+			System.out.printf("%d %s %n", categoria.getId(),categoria.getNombre());
+		
+		
+		
+		
+		
+//		entityManagerFactory=Persistence.createEntityManagerFactory("serpis.ad");
+//		entityManager=entityManagerFactory.createEntityManager();
+//		List<Categoria>categorias= entityManager.createQuery("from categoria order by id", Categoria.class).getResultList();
+//		for (Categoria categoria : categorias)
+//			System.out.printf("%d %s %n", categoria.getId(), categoria.getNombre());	
+//	    entityManager.close();
 }
 
 }
