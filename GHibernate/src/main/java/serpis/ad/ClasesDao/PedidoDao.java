@@ -50,19 +50,7 @@ public class PedidoDao {
 		
 		
 	}
-//		Pedido pedido = new Pedido();
-//		System.out.println("Indique el precio");
-//		Long precio = sc.nextLong();
-//		pedido.setImporte(precio);
-//		LocalDateTime fecha = LocalDateTime.now();
-//		pedido.setFecha(fecha);
-//		System.out.println("id del cliente");
-//		Cliente cliente = entityManager.find(Cliente.class,sc.nextLong());
-//		pedido.setCliente(cliente);
-//		entityManager.getTransaction().begin();
-//		entityManager.persist(pedido);
-//		entityManager.getTransaction().commit();
-	
+
 	
 	
 	
@@ -75,6 +63,7 @@ public class PedidoDao {
 		float importe = sc.nextFloat();
 		System.out.println();
 		pedido.setImporte(importe);
+		
 		System.out.println("Id cliente");
 		cliente=entityManager.find(Cliente.class, sc.nextLong());
 		pedido.setCliente(cliente);
@@ -82,6 +71,16 @@ public class PedidoDao {
 		entityManager.close();
 		//lineaPedido.setImporte(importe);
 		
+	}
+	
+	public static void delete() {
+		System.out.println("Id a borrar");
+		Long pedidoId = sc.nextLong();
+		pedido=entityManager.find(Pedido.class,pedidoId);
+		entityManager.getTransaction().begin();
+		entityManager.remove(pedido);
+		entityManager.getTransaction().commit();
+		entityManager.close();
 	}
 	
 	public  static void show(){

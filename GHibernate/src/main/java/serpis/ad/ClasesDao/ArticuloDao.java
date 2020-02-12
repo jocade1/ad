@@ -10,6 +10,8 @@ import javax.persistence.Persistence;
 
 import serpis.ad.Articulo;
 import serpis.ad.Categoria;
+import serpis.ad.Cliente;
+import serpis.ad.Pedido;
 
 
 public class ArticuloDao {
@@ -20,22 +22,24 @@ public class ArticuloDao {
 
 	public static EntityManagerFactory entityManagerFactory;
 	public static EntityManager entityManager;
+	public static Scanner sc=new Scanner(System.in);
+	public static Articulo articulo;
 	
 	public static void insert() {
-		Scanner tcl=new Scanner(System.in);
+		
 		entityManagerFactory=Persistence.createEntityManagerFactory("serpis.ad.ghibernate");
 		entityManager=entityManagerFactory.createEntityManager();
-		Articulo articulo=new Articulo();
+		articulo=new Articulo();
 		
 		System.out.println("Dime el nombre del Producto:");
-		String nombre=tcl.nextLine();
+		String nombre=sc.nextLine();
 		articulo.setNombre(nombre);
 		
 		System.out.println("Dime el precio");
-		float precio=tcl.nextFloat();
+		float precio=sc.nextFloat();
 		articulo.setPrecio(precio);
 		System.out.println("Dime categoria");
-		Categoria categoria=entityManager.find(Categoria.class,tcl.nextLong());
+		Categoria categoria=entityManager.find(Categoria.class,sc.nextLong());
 		articulo.setCategoria(categoria);
 		entityManager.getTransaction().begin();
 		entityManager.persist(articulo);
@@ -45,9 +49,24 @@ public class ArticuloDao {
 		
 	}
 	
-
-	
-	
+//
+//	
+//	public static void update() {
+//		System.out.println("Introduce id a cambiar");
+//		Long pedidoId = sc.nextLong();
+//		articulo=entityManager.find(Pedido.class, pedidoId);
+//		entityManager.getTransaction().begin();
+//		System.out.println("Precio");
+//		float importe = sc.nextFloat();
+//		System.out.println();
+//		articulo.setImporte(importe);
+//		System.out.println("Id cliente");
+//		cliente=entityManager.find(Cliente.class, sc.nextLong());
+//		pedido.setCliente(cliente);
+//		entityManager.getTransaction().commit();
+//		entityManager.close();
+//	
+//	
 	
 	public static void show() {
 		entityManagerFactory=Persistence.createEntityManagerFactory("serpis.ad.proyectofinal");

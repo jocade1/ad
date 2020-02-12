@@ -71,8 +71,7 @@ public class HibernateMain {
 				System.out.println("Articulo");
 				System.out.println("1.Insertar");
 				System.out.println("2.Modificar");
-				System.out.println("3.Borrar");
-				System.out.println("4.Mostrar");
+				System.out.println("3.Mostrar");
 				System.out.println("0.Salir");
 				int seleccion1 = sc.nextInt();
 				
@@ -82,15 +81,12 @@ public class HibernateMain {
 					break;
 				
 				case 2: 
+					//ArticuloDao.update();
 					
 					break;
 					
 				
 				case 3: 
-					//ArticuloDao.delete();	
-					break;
-					
-				case 4:
 					ArticuloDao.show();
 					break;
 					
@@ -149,12 +145,12 @@ public class HibernateMain {
 					break;
 				
 				case 2: 
-				
+					PedidoDao.update();
 					break;
 					
 				
 				case 3: 
-					//PedidoDao.delete();
+					PedidoDao.delete();
 					break;
 					
 				case 4:
