@@ -24,6 +24,8 @@ public class ArticuloDao {
 	public static EntityManager entityManager;
 	public static Scanner sc=new Scanner(System.in);
 	public static Articulo articulo;
+	public static Categoria categoria;
+	
 	
 	public static void insert() {
 		
@@ -49,24 +51,27 @@ public class ArticuloDao {
 		
 	}
 	
-//
-//	
-//	public static void update() {
-//		System.out.println("Introduce id a cambiar");
-//		Long pedidoId = sc.nextLong();
-//		articulo=entityManager.find(Pedido.class, pedidoId);
-//		entityManager.getTransaction().begin();
-//		System.out.println("Precio");
-//		float importe = sc.nextFloat();
-//		System.out.println();
-//		articulo.setImporte(importe);
-//		System.out.println("Id cliente");
-//		cliente=entityManager.find(Cliente.class, sc.nextLong());
-//		pedido.setCliente(cliente);
-//		entityManager.getTransaction().commit();
-//		entityManager.close();
-//	
-//	
+	
+	public static void update() {
+		System.out.println("introduce id a cambiar");
+		Long id_producto =sc.nextLong();
+		articulo =entityManager.find(Articulo.class,id_producto);
+		entityManager.getTransaction().begin();
+		System.out.println("Introduce el nombre");
+		articulo.setNombre(sc.nextLine());
+		System.out.println("Introduce el nuevo precio");
+		articulo.setPrecio(sc.nextFloat());
+		System.out.println("Introduce el id de categoria");
+		categoria=entityManager.find(Categoria.class,sc.hasNextLong());
+		articulo.setCategoria(categoria);
+		
+		entityManager.getTransaction().begin();
+		entityManager.persist(articulo);
+		entityManager.getTransaction().commit();
+		entityManagerFactory.close();
+		
+	}
+	
 	
 	public static void show() {
 		entityManagerFactory=Persistence.createEntityManagerFactory("serpis.ad.proyectofinal");

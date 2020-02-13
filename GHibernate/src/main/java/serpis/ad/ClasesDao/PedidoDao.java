@@ -40,7 +40,7 @@ public class PedidoDao {
 		System.out.println("Cantidad");
 		float unidades = sc.nextFloat();
 		lineaPedido.setUnidades(unidades);
-		//lineaPedido.setImporte();
+		lineaPedido.setImporte();
 		entityManager.getTransaction().begin();
 		entityManager.persist(pedido);
 
@@ -59,18 +59,19 @@ public class PedidoDao {
 		Long pedidoId = sc.nextLong();
 		pedido=entityManager.find(Pedido.class, pedidoId);
 		entityManager.getTransaction().begin();
+		Long lineaId = sc.nextLong();
+		lineaPedido =entityManager.find(LineaPedido.class,lineaId);
 		System.out.println("Precio");
-		float importe = sc.nextFloat();
-		System.out.println();
-		pedido.setImporte(importe);
-		
+		float precio= sc.nextFloat();
+		lineaPedido.setPrecio(precio);
+		float unidades = sc.nextFloat();
+		lineaPedido.setUnidades(unidades);
 		System.out.println("Id cliente");
-		cliente=entityManager.find(Cliente.class, sc.nextLong());
+		cliente=entityManager.find(Cliente.class,sc.nextLong());
 		pedido.setCliente(cliente);
+
 		entityManager.getTransaction().commit();
-		entityManager.close();
-		//lineaPedido.setImporte(importe);
-		
+
 	}
 	
 	public static void delete() {

@@ -59,13 +59,6 @@ public class CategoriaDao {
 		
 		
 		
-		
-//		entityManagerFactory=Persistence.createEntityManagerFactory("serpis.ad");
-//		entityManager=entityManagerFactory.createEntityManager();
-//		List<Categoria>categorias= entityManager.createQuery("from categoria order by id", Categoria.class).getResultList();
-//		for (Categoria categoria : categorias)
-//			System.out.printf("%d %s %n", categoria.getId(), categoria.getNombre());	
-//	    entityManager.close();
-}
+	}
 
 }
