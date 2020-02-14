@@ -74,7 +74,7 @@ public class ArticuloDao {
 	
 	
 	public static void show() {
-		entityManagerFactory=Persistence.createEntityManagerFactory("serpis.ad.proyectofinal");
+		entityManagerFactory=Persistence.createEntityManagerFactory("serpis.ad.ghibernate");
 		entityManager=entityManagerFactory.createEntityManager();
 		List<Articulo>articulos= entityManager.createQuery("from producto order by id", Articulo.class).getResultList();
 		System.out.println("ID "+" Nombre "+" Precio ");

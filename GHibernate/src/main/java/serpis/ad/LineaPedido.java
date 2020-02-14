@@ -40,7 +40,7 @@ public class LineaPedido {
 	
 	
 
-	public LineaPedido() {} //Hibernate necesita un ctor sin parámetros
+	public LineaPedido() {} 
 	
 	public LineaPedido(Pedido pedido) {
 		this.pedido = pedido;

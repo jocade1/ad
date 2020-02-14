@@ -52,6 +52,7 @@ public class CategoriaDao {
 	
 	public static void show() {
 		
+		
 		List<Categoria>categorias = entityManager.createQuery("from categoria order by id",Categoria.class).getResultList();
 		for (Categoria categoria : categorias)
 			System.out.printf("%d %s %n", categoria.getId(),categoria.getNombre());

@@ -85,6 +85,9 @@ public class PedidoDao {
 	}
 	
 	public  static void show(){
+		entityManagerFactory=Persistence.createEntityManagerFactory("serpis.ad.ghibernate");
+		entityManager=entityManagerFactory.createEntityManager();
+		
 		List<Pedido>pedidos= entityManager.createQuery("from Pedido order by id", Pedido.class).getResultList();
 		System.out.println("ID  "+"  Fecha  "+"  Nombre  "+"  Precio  ");
 		for (Pedido pedido : pedidos)

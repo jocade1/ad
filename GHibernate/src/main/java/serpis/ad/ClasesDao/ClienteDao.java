@@ -62,6 +62,8 @@ public class ClienteDao {
 		
 		
 		public static void show() {
+			entityManagerFactory=Persistence.createEntityManagerFactory("serpis.ad.ghibernate");
+			entityManager=entityManagerFactory.createEntityManager();
 			List<Cliente> clientes= entityManager.createQuery("from Cliente order by id", Cliente.class).getResultList();
 			System.out.println("ID "+" Nombre ");
 			for (Cliente cliente : clientes)
